@@ -1,7 +1,9 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import fs from "fs";
+import Link from "next/link";
 
-export default function Home() {
+export default function Home({ slug }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,6 +18,27 @@ export default function Home() {
         </h1>
         <img src="https://brobible.com/wp-content/uploads/2021/01/50-best-memes-2021-calendar-joke.png?w=1024" />
       </main>
+
+      <footer>
+        {slug.map((fileName) => {
+          return (
+            <div style={{ background: "grey", margin: 20 }}>
+              <Link key={fileName} href={"/blog/" + fileName}>
+                <a>{"/blog/" + fileName}</a>
+              </Link>
+            </div>
+          );
+        })}
+      </footer>
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const files = fs.readdirSync("post");
+  return {
+    props: {
+      slug: files.map((fileName) => fileName.replace(".md", "")),
+    },
+  };
+};
