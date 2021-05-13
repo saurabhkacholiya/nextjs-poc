@@ -6,6 +6,7 @@ import Head from "next/head";
 import marked from "marked";
 
 const Post = ({ htmlString, data }) => {
+  console.log(htmlString);
   return (
     <div style={{ margin: 10 }}>
       <Head>
@@ -13,6 +14,7 @@ const Post = ({ htmlString, data }) => {
         <meta title="description" content={data.description} />
       </Head>
       <div dangerouslySetInnerHTML={{ __html: htmlString }} />
+      <img src={data.thumbnail} alt="thumbnail-img" />
     </div>
   );
 };
