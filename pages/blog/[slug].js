@@ -7,7 +7,7 @@ import marked from "marked";
 
 const Post = ({ htmlString, data }) => {
   return (
-    <div style={{ margin: 10, background: red }}>
+    <div style={{ margin: 10 }}>
       <Head>
         <title>{data.title}</title>
         <meta title="description" content={data.description} />
